@@ -32,7 +32,7 @@ function craftQuery (n) {
               author {
                 login
               },
-              bodyText,
+              body,
               createdAt,
               state,
               resourcePath,
@@ -96,7 +96,6 @@ async function run () {
   let author = text(o.author.login)
   let state = text(o.state)
   let created = text(o.createdAt)
-  let body = text(o.bodyText)
 
   let details = [
     `${label('author')}: ${author}  ${label('state')}:`,
@@ -107,7 +106,7 @@ async function run () {
     `${label('title')}: ${text(o.title)}\n`,
     details,
     `${label('report')}:`,
-    `${body}\n`
+    `${marked(o.body)}\n`
   ].join('\n')
 
   let comments = []
